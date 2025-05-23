@@ -4,6 +4,7 @@ import { UserPreferences } from "@/ZustandStore/Auth";
 import { NextRequest, NextResponse } from "next/server";
 import { ID } from "node-appwrite";
 
+
 /// This is the route for creating an answer
 export async function POST(request:NextRequest){
     try {
