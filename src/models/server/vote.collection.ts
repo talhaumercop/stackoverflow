@@ -27,7 +27,7 @@ export default async function createVoteCollection() {
             databases.createEnumAttribute(db, votesCollection, "type",
                 [
                     "question",
-                    "amswers"
+                    "answers"
                 ],
                 true
             ),
