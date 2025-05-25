@@ -2,6 +2,7 @@
 import { createAuthStore } from '@/ZustandStore/Auth'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Ripple } from '@/components/magicui/ripple'
 
 const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false)

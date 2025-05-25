@@ -77,14 +77,16 @@ export const createAuthStore = create<IAuthStore>()(
                     return { success: false, error: error instanceof AppwriteException ? error : null }
                 }
             },
-            async logout() { 
+            async logout() {
                 try {
-                    await account.deleteSession('current')
-                    set({ session: null, user: null, jwt: null })
-                } catch (error:any) {
-                    console.log(error.message)
+                    await account.deleteSession('current');
+                } catch (error: any) {
+                    console.log(error.message);
+                } finally {
+                    account.client.setJWT(""); // Clean up
+                    set({ session: null, user: null, jwt: null });
                 }
-            },
+            }
         })),
         {
             name: "auth-storage",
