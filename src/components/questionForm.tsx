@@ -1,7 +1,7 @@
 'use client'
 
 import { attachmentBucket, db, questionCollection } from "@/models/name";
-import { databases, storage } from "@/models/server/config";
+import { databases, storage } from "@/models/client/config";
 import slugify from "@/utils/slugify";
 import { createAuthStore } from "@/ZustandStore/Auth"
 import { useRouter } from "next/navigation";

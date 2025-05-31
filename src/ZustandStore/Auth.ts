@@ -100,3 +100,5 @@ export const createAuthStore = create<IAuthStore>()(
         }
     )
 )
+
+export const useAuthStore = createAuthStore;
