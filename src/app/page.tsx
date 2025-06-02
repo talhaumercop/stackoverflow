@@ -17,7 +17,7 @@ export default function Home() {
         </p>
       </div>
       <div className="mt-10">
-        <Link href="/questions">
+        <Link href="/questions/ask">
         <ShimmerButton>
           ASK A QUESTION
         </ShimmerButton>
