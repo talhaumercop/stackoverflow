@@ -52,21 +52,35 @@ export const createAuthStore = create<IAuthStore>()(
             },
             async login(email: string, password: string) {
                 try {
-                    const session = await account.createEmailPasswordSession(email, password)
-                    const jwt = await account.createJWT()
-                    const user = await account.get<UserPreferences>()
+                    // First try to delete any existing session
+                    try {
+                        await account.deleteSession('current');
+                    } catch (error) {
+                        // Ignore error if no session exists
+                    }
+
+                    // Now create new session
+                    const session = await account.createEmailPasswordSession(email, password);
+                    const jwt = await account.createJWT();
+                    const user = await account.get<UserPreferences>();
+
                     if (!user.prefs?.reputation) {
                         await account.updatePrefs({
                             reputation: 0
-                        })
+                        });
                     }
-                    set({ session: session, user, jwt: jwt.jwt })
-                    return { success: true }
+
+                    set({ session: session, user, jwt: jwt.jwt });
+                    return { success: true };
                 } catch (error: any) {
                     console.log(error.message);
-                    return { success: false, error: error instanceof AppwriteException ? error : null }
+                    return {
+                        success: false,
+                        error: error instanceof AppwriteException ? error : null
+                    };
                 }
-            },
+            }
+            ,
             async signup(username: string, email: string, password: string) {
                 try {
                     await account.create(ID.unique(), email, password, username)

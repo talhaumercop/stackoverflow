@@ -7,6 +7,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { MessageSquare, ThumbsUp, ThumbsDown, Share2, Bookmark, Edit2, Trash2 } from 'react-feather';
 import Link from "next/link";
 import EditQuestion from "./EditQuestion";
+import DeleteQuestion from "./DeletQuestion";
 
 
 const Question = async ({ params }: { params: { questId: string, questName: string } }) => {
@@ -317,6 +318,12 @@ const Question = async ({ params }: { params: { questId: string, questName: stri
                             questionId={question.$id}
                             questionTitle={question.title}
                             authorId={question.author}
+                        />
+                    </div>
+                    <div>
+                        <DeleteQuestion
+                        questId={question.$id}
+                       authorId={question.author}
                         />
                     </div>
                 </section>
