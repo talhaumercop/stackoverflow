@@ -41,15 +41,26 @@ export const createAuthStore = create<IAuthStore>()(
             },
             async verifySession() {
                 try {
-                    const session = await account.getSession("current")
+                    const session = await account.getSession("current");
                     if (!session) {
-                        return console.log("no session found")
+                        return console.log("no session found");
                     }
-                    set({ session: session })
+
+                    const jwt = await account.createJWT();
+                    const user = await account.get<UserPreferences>();
+
+                    if (!user.prefs?.reputation) {
+                        await account.updatePrefs({
+                            reputation: 0
+                        });
+                    }
+
+                    set({ session, user, jwt: jwt.jwt });
                 } catch (error: any) {
-                    console.log(error.message)
+                    console.log(error.message);
                 }
-            },
+            }
+            ,
             async login(email: string, password: string) {
                 try {
                     // First try to delete any existing session

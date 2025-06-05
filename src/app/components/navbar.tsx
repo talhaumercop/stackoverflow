@@ -6,9 +6,12 @@ import { createAuthStore, useAuthStore, UserPreferences } from "@/ZustandStore/A
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
- const Navbar = () => {
-  const { session, logout } = createAuthStore();
+const Navbar = () => {
+  const { session, logout, user } = useAuthStore();
   const pathname = usePathname();
+
+  const userSlug = slugify(user?.name || user?.email || "profile");
+  const userId = user?.$id;
 
   const links = [
     { name: "Home", href: "/" },
@@ -22,9 +25,8 @@ import { usePathname } from "next/navigation";
           <Link
             key={index}
             href={link.href}
-            className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl text-white text-sm hover:bg-white/20 transition-all ${
-              pathname === link.href ? "bg-white/20" : ""
-            }`}
+            className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl text-white text-sm hover:bg-white/20 transition-all ${pathname === link.href ? "bg-white/20" : ""
+              }`}
           >
             {link.name[0]}
           </Link>
@@ -41,13 +43,13 @@ import { usePathname } from "next/navigation";
             >
               ⎋
             </button>
-            {/* <Link
-              href={`/users/${userId}/${userSlug}`}
-              title="Profile"
-              className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl text-white hover:bg-white/20 transition-all"
-            >
-              👤
-            </Link> */}
+           <Link
+      href={`/users/${userId}/${userSlug}`}
+      title="Profile"
+      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl text-white hover:bg-white/20 transition-all"
+    >
+      👤
+    </Link>
           </>
         ) : (
           <>
