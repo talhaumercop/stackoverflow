@@ -2,7 +2,7 @@
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import QuestionForm from "@/components/questionForm";
 
-const Ask = () => {
+const Page = () => {
     return (
         <div className="relative flex flex-col items-center justify-center min-h-screen w-full overflow-hidden">
             {/* Background Flickering Grid - positioned absolutely behind content */}
@@ -28,4 +28,4 @@ const Ask = () => {
     );
 }
 
-export default Ask;
+export default Page;

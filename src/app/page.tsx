@@ -1,15 +1,15 @@
 "use client";
 import { Ripple } from "@/components/magicui/ripple";
 import Image from "next/image";
-import { navbar } from "./components/navbar";
 import { MorphingText } from "@/components/magicui/morphing-text";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import Link from "next/link";
+import Navbar from "./components/navbar";
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-900 text-white">
       <Ripple />
-      {navbar()}
+     <Navbar/>
       <div className="w-full flex flex-col justify-center items-center gap-5">
         <MorphingText texts={["CODE", "CASCADE", "ASK", "REPLY"]} />
         <p>

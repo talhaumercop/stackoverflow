@@ -1,3 +1,4 @@
+'use client'
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import React from "react"
 
@@ -15,7 +16,7 @@ const Search=()=>{
         e.preventDefault()
         const newSearchParams=new URLSearchParams(searchParams)
         newSearchParams.set('search',search)
-        router.push(`${pathname}/${newSearchParams}`)
+       router.push(`${pathname}?${newSearchParams.toString()}`);
     }
     return(
         <form className="flex w-full flex-row gap-4" onSubmit={fromSubmit}>
@@ -32,3 +33,4 @@ const Search=()=>{
     )
 
 }
+export default Search
