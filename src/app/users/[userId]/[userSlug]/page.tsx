@@ -2,6 +2,7 @@ import { answerCollection, db, questionCollection } from "@/models/name"
 import { databases, users } from "@/models/server/config"
 import { UserPreferences } from "@/ZustandStore/Auth"
 import { Query } from "node-appwrite"
+import EditButton from "./editButton"
 
 const userPage = async ({ params }: { params: { userId: string, userSlug: string } }) => {
     const [user, questions, answers] = await Promise.all([
@@ -16,8 +17,8 @@ const userPage = async ({ params }: { params: { userId: string, userSlug: string
         ])
     ])
     return (
-        <div className="min-h-screen bg-gray-900 text-white p-8">
-            <div className="max-w-4xl mx-auto bg-gray-800 rounded-2xl p-8 shadow-lg">
+        <div className="min-h-screen bg-zinc-900 text-white p-8">
+            <div className="max-w-4xl mx-auto bg-zinc-800 rounded-2xl p-8 shadow-lg">
                 {/* User Info Section */}
                 <div className="flex items-center gap-6 mb-8">
                     <img
@@ -42,6 +43,10 @@ const userPage = async ({ params }: { params: { userId: string, userSlug: string
                         <p className="text-gray-300">Answers Given</p>
                     </div>
                 </div>
+                <div className="mt-10">
+                    <EditButton />
+                </div>
+
             </div>
         </div>
     )
