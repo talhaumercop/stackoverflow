@@ -61,7 +61,7 @@ const Page = ({ params }: { params: { userId: string, userSlug: string } }) => {
                     {error}
                 </div>
             )}
-            
+
             <form className="mt-8 space-y-6" onSubmit={onFormSubmit}>
                 <div className="space-y-4">
                     <div>
